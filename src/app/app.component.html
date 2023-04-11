@@ -1,0 +1,121 @@
+<div class="container">
+  <div class = "m-5">
+
+    <button (click)="updateUserData()" class="btn btn-danger mb-4">Add User</button>
+    <form [formGroup]="userForm"  (ngSubmit)="postUserData()">
+
+      <div class="form-group mb-3 ">
+          <label for="firstName">First Name</label>
+          
+          <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+
+          <small class="text-danger" *ngIf = "userForm.controls['firstName'].dirty && userForm.hasError('required','firstName')">First Name is required</small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+        <small class="text-danger" *ngIf = "userForm.controls['lastName'].dirty && userForm.hasError('required','lastName')">Last Name is required</small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter email">
+        <small class="text-danger" *ngIf = "userForm.controls['email'].dirty && userForm.hasError('required','email')">Email is required</small>
+      </div>
+
+
+      <div class="form-group mb-3">
+        <label for="phone">Phone</label>
+        <input type="number" class="form-control" formControlName="phoneNumber" placeholder="Enter Contact Number">
+        <small class="text-danger" *ngIf = "userForm.controls['phoneNumber'].dirty && userForm.hasError('required','phoneNumber')">Phone Number is required</small>
+      </div>
+
+
+      <div class="form-group mb-3">
+        <label for="company">Company</label>
+        <input type="text" class="form-control" formControlName ="company" placeholder="Company Name">
+        <small class="text-danger" *ngIf = "userForm.controls['company'].dirty && userForm.hasError('required','company')">Company is required</small>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="Gender">Gender</label>
+        <br/>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="gender" id="inlineRadio1" value="Male">
+          <label class="form-check-label" for="Male">Male</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="gender" id="inlineRadio2" value="Female">
+          <label class="form-check-label" for="Female">Female</label>
+        </div>
+
+
+        <small class="text-danger" *ngIf = "userForm.controls['gender'].dirty && userForm.hasError('required','gender')">Gender is required</small>
+      </div>
+
+
+      <div class="form-group mb-3">
+        <label for="dateofBirth">DOB</label>
+        <input type="date" class="form-control" formControlName="date" name="birthday">
+        <small class="text-danger" *ngIf = "userForm.controls['date'].dirty && userForm.hasError('required','date')">date is required</small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="pwd" placeholder="Enter password">
+        <small class="text-danger" *ngIf = "userForm.controls['pwd'].dirty && userForm.hasError('required','pwd')">Password is required</small>
+      </div>
+
+      <div class="form-group mb-5">
+        <label for="confirmpassword">Confirm Password</label>
+        <input type="password" class="form-control" formControlName ="confirmPassword" placeholder="Enter Confirm password">
+        <small class="text-danger" *ngIf = "userForm.controls['confirmPassword'].dirty && userForm.hasError('required','confirmPassword')">Confirm Password is required</small>
+      </div>
+      
+      
+      
+      <div class="d-flex ">
+        <button type="submit" class="btn btn-primary me-4" [disabled]="userForm.invalid">Register</button>
+        <button type="button" class="btn btn-primary">Cancel</button>
+      </div>
+  </form>
+  
+
+
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Email</th>
+      <th scope = "col">Phone</th>
+      <th scope = "col">Company</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Edit</th>
+      <th scopr = "col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let user of userInformation" >
+      <td>{{user.id}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.phoneNumber}}</td>
+      <td>{{user.company}}</td>
+      <td>{{user.date}}</td>
+      <td><button (click)="onEdit(user)" class="btn btn-danger">Edit</button></td>
+      <td><button (click)="deleteUserData(user.id)" class="btn btn-success">Delete</button></td>
+
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
